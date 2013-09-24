@@ -1,17 +1,11 @@
-import flask
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.heroku import Heroku
+import bottle
 import os
 
-app = flask.Flask(__name__)
-app.debug = True
-heroku = Heroku(app)
-db = SQLAlchemy(app)
-
-@app.route('/')
+@bottle.route('/')
 def index():
     return 'Hello, world!'
 
 if __name__=='__main__':
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    bottle.run(server='gunicorn', host='0.0.0.0', port=port)
 
