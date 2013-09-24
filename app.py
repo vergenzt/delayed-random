@@ -1,14 +1,11 @@
 import flask
+from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.heroku import Heroku
 import os
 
 app = flask.Flask(__name__)
-app.config.update(*(
-    DATABASE = '/tmp/flaskr.db',
-    DEBUG = True,
-    SECRET_KEY = 'development key',
-    USERNAME = 'admin',
-    PASSWORD = 'default',
-))
+heroku = Heroku(app)
+db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
