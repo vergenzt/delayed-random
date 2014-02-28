@@ -1,0 +1,13 @@
+% rebase('base.html', title='Delayed Random')
+<h1>Delayed Random</h1>
+<form name="newquery" action="/newquery" method="post">
+  <input type="submit" value="New Query Page">
+</form>
+% if queries:
+<ul>
+  % for query in queries.values():
+  <li><a href="/query/{{query.qid}}"> {{query.qid}}: {{query.val}} </a></li>
+  % end
+</ul>
+% end
+
